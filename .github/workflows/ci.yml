@@ -53,11 +53,11 @@ jobs:
       matrix:
         include:
           - os: ubuntu-latest
-            asset_name: imposter-linux
+            platform: linux
           - os: windows-latest
-            asset_name: imposter-windows.exe
+            platform: windows
           - os: macos-latest
-            asset_name: imposter-macos
+            platform: macos
     runs-on: ${{ matrix.os }}
     steps:
     - uses: actions/checkout@v4
@@ -79,11 +79,13 @@ jobs:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       run: |
         tag_name=${{ needs.release-please.outputs.tag_name }}
-        if [ "${{ matrix.os }}" = "windows-latest" ]; then
+        if [ "${{ matrix.platform }}" = "windows" ]; then
           asset_path="./dist/imposter.exe"
+          asset_name="imposter-${{ matrix.platform }}-${tag_name#v}.exe"
         else
           asset_path="./dist/imposter"
+          asset_name="imposter-${{ matrix.platform }}-${tag_name#v}"
         fi
-        asset_name="${{ matrix.asset_name }}-${tag_name#v}"
-        gh release upload "$tag_name" "$asset_path#$asset_name"
+        echo "Uploading asset: $asset_name"
+        gh release upload "$tag_name" "$asset_path#$asset_name" --clobber
       shell: bash
