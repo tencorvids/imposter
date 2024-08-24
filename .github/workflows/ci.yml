@@ -43,7 +43,6 @@ jobs:
         id: release
         with:
           release-type: python
-          package-name: imposter
           token: ${{ secrets.RELEASE_PLEASE_TOKEN }}
 
   create-and-upload-binary:
