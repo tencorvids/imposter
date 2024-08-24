@@ -32,7 +32,7 @@ jobs:
         poetry install
 
   Release:
-    needs: test
+    needs: Build
     runs-on: ubuntu-latest
     if: github.ref == 'refs/heads/main'
     outputs:
@@ -47,7 +47,7 @@ jobs:
           token: ${{ secrets.RELEASE_PLEASE_TOKEN }}
 
   create-and-upload-binary:
-    needs: release-please
+    needs: Release
     if: ${{ needs.release-please.outputs.release_created }}
     strategy:
       matrix:
