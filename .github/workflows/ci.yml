@@ -13,7 +13,7 @@ permissions:
   pull-requests: write
 
 jobs:
-  test:
+  Build:
     runs-on: ubuntu-latest
     strategy:
       matrix:
@@ -31,7 +31,7 @@ jobs:
         pip install poetry
         poetry install
 
-  release-please:
+  Release:
     needs: test
     runs-on: ubuntu-latest
     if: github.ref == 'refs/heads/main'
