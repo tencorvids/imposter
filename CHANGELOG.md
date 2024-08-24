@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.2.0](https://github.com/tencorvids/imposter/compare/v0.1.0...v0.2.0) (2024-08-24)
+
+
+### Features
+
+* Binary creation for big three ([3879d76](https://github.com/tencorvids/imposter/commit/3879d7684182e86cffa4d4b8cb283b07eb527ea4))
+
 ## 0.1.0 (2024-08-24)
 
 

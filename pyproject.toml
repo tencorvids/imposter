@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "imposter"
-version = "0.1.0"
+version = "0.2.0"
 description = "A tool to generate fake git commit history with customizable profiles"
 authors = ["rew <rew@tencorvids.com>"]
 readme = "README.md"
