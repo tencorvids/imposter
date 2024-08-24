@@ -1,5 +1,13 @@
 # Changelog
 
+## [0.3.0](https://github.com/tencorvids/imposter/compare/v0.2.3...v0.3.0) (2024-08-24)
+
+
+### Features
+
+* New main file for execution ([e7b4f02](https://github.com/tencorvids/imposter/commit/e7b4f026decbb1bcf3ad4570a12788e700f9ac31))
+* Remove binary creation from ci ([e7b4f02](https://github.com/tencorvids/imposter/commit/e7b4f026decbb1bcf3ad4570a12788e700f9ac31))
+
 ## [0.2.3](https://github.com/tencorvids/imposter/compare/v0.2.2...v0.2.3) (2024-08-24)
 
 
