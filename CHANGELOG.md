@@ -1,5 +1,13 @@
 # Changelog
 
+## [0.2.2](https://github.com/tencorvids/imposter/compare/v0.2.1...v0.2.2) (2024-08-24)
+
+
+### Bug Fixes
+
+* Build names overlap fixed? ([9213a1a](https://github.com/tencorvids/imposter/commit/9213a1ad1b44315d39deb8ff92ede5a659720c23))
+* Dependant workflow ([cb8df07](https://github.com/tencorvids/imposter/commit/cb8df07e02a5cfbfe93b6b71a779603c42aaa556))
+
 ## [0.2.1](https://github.com/tencorvids/imposter/compare/v0.2.0...v0.2.1) (2024-08-24)
 
 
