@@ -1,0 +1,78 @@
+name: CI/CD
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+  release:
+    types: [created]
+
+permissions:
+  contents: write
+  pull-requests: write
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        python-version: [3.12]
+
+    steps:
+    - uses: actions/checkout@v3
+    - name: Set up Python ${{ matrix.python-version }}
+      uses: actions/setup-python@v4
+      with:
+        python-version: ${{ matrix.python-version }}
+    - name: Install dependencies
+      run: |
+        python -m pip install --upgrade pip
+        pip install poetry
+        poetry install
+    - name: Run tests
+      run: poetry run pytest
+
+  release-please:
+    needs: test
+    runs-on: ubuntu-latest
+    if: github.ref == 'refs/heads/main'
+    outputs:
+      release_created: ${{ steps.release.outputs.release_created }}
+      tag_name: ${{ steps.release.outputs.tag_name }}
+    steps:
+      - uses: google-github-actions/release-please-action@v3
+        id: release
+        with:
+          release-type: python
+          package-name: imposter
+          token: ${{ secrets.RELEASE_PLEASE_TOKEN }}
+
+  create-and-upload-binary:
+    needs: release-please
+    runs-on: ubuntu-latest
+    if: ${{ needs.release-please.outputs.release_created }}
+    steps:
+    - uses: actions/checkout@v3
+    - name: Set up Python
+      uses: actions/setup-python@v4
+      with:
+        python-version: '3.12'
+    - name: Install dependencies
+      run: |
+        python -m pip install --upgrade pip
+        pip install poetry pyinstaller
+    - name: Install project
+      run: poetry install
+    - name: Create binary
+      run: |
+        poetry run pyinstaller --onefile src/imposter/main.py --name imposter
+    - name: Upload Release Asset
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      run: |
+        tag_name=${{ needs.release-please.outputs.tag_name }}
+        asset_path="./dist/imposter"
+        asset_name="imposter-${tag_name#v}-linux"
+        asset_content_type="application/octet-stream"
+        gh release upload "$tag_name" "$asset_path#$asset_name"

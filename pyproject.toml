@@ -1,0 +1,24 @@
+[tool.poetry]
+name = "imposter"
+version = "0.1.0"
+description = "A tool to generate fake git commit history with customizable profiles"
+authors = ["rew <rew@tencorvids.com>"]
+readme = "README.md"
+packages = [{include = "imposter", from = "src"}]
+
+[tool.poetry.dependencies]
+python = "^3.12"
+click = "^8.1.7"
+gitpython = "^3.1.37"
+
+[tool.poetry.group.dev.dependencies]
+black = "^23.7.0"
+isort = "^5.12.0"
+flake8 = "^6.1.0"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
+
+[tool.poetry.scripts]
+imposter = "imposter.main:main"
