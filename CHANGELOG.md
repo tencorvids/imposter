@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.3.1](https://github.com/tencorvids/imposter/compare/v0.3.0...v0.3.1) (2024-08-24)
+
+
+### Bug Fixes
+
+* Remove surrounding quotes from user.email ([777d900](https://github.com/tencorvids/imposter/commit/777d900d36cb35e4074a089acb8ff4599f42432c))
+
 ## [0.3.0](https://github.com/tencorvids/imposter/compare/v0.2.3...v0.3.0) (2024-08-24)
 
 
