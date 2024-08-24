@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.2.3](https://github.com/tencorvids/imposter/compare/v0.2.2...v0.2.3) (2024-08-24)
+
+
+### Bug Fixes
+
+* Change inputs for workflow ([39d2871](https://github.com/tencorvids/imposter/commit/39d28713860d43425311a9d46a86f1bb8e04cdac))
+
 ## [0.2.2](https://github.com/tencorvids/imposter/compare/v0.2.1...v0.2.2) (2024-08-24)
 
 
