@@ -48,8 +48,18 @@ jobs:
 
   create-and-upload-binary:
     needs: release-please
-    runs-on: ubuntu-latest
     if: ${{ needs.release-please.outputs.release_created }}
+    strategy:
+      matrix:
+        os: [ubuntu-latest, windows-latest, macos-latest]
+        include:
+          - os: ubuntu-latest
+            asset_name: imposter-linux
+          - os: windows-latest
+            asset_name: imposter-windows.exe
+          - os: macos-latest
+            asset_name: imposter-macos
+    runs-on: ${{ matrix.os }}
     steps:
     - uses: actions/checkout@v4
     - name: Set up Python
@@ -71,6 +81,9 @@ jobs:
       run: |
         tag_name=${{ needs.release-please.outputs.tag_name }}
         asset_path="./dist/imposter"
-        asset_name="imposter-${tag_name#v}-linux"
-        asset_content_type="application/octet-stream"
+        if [ "${{ matrix.os }}" = "windows-latest" ]; then
+          asset_path="./dist/imposter.exe"
+        fi
+        asset_name="${{ matrix.asset_name }}-${tag_name#v}"
         gh release upload "$tag_name" "$asset_path#$asset_name"
+      shell: bash
