@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.2.1](https://github.com/tencorvids/imposter/compare/v0.2.0...v0.2.1) (2024-08-24)
+
+
+### Bug Fixes
+
+* Binary names ([4836eab](https://github.com/tencorvids/imposter/commit/4836eabf0d747e14c6a3c995dd8ee67e8059e73b))
+
 ## [0.2.0](https://github.com/tencorvids/imposter/compare/v0.1.0...v0.2.0) (2024-08-24)
 
 
