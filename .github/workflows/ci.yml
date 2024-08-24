@@ -51,7 +51,6 @@ jobs:
     if: ${{ needs.release-please.outputs.release_created }}
     strategy:
       matrix:
-        os: [ubuntu-latest, windows-latest, macos-latest]
         include:
           - os: ubuntu-latest
             asset_name: imposter-linux
@@ -80,9 +79,10 @@ jobs:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       run: |
         tag_name=${{ needs.release-please.outputs.tag_name }}
-        asset_path="./dist/imposter"
         if [ "${{ matrix.os }}" = "windows-latest" ]; then
           asset_path="./dist/imposter.exe"
+        else
+          asset_path="./dist/imposter"
         fi
         asset_name="${{ matrix.asset_name }}-${tag_name#v}"
         gh release upload "$tag_name" "$asset_path#$asset_name"
