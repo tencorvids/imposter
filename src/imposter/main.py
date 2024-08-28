@@ -15,20 +15,32 @@ from imposter.git_operations import create_commit
     required=True,
     help="Path to the git repository",
 )
-@click.option("--days", type=int, default=30, help="Number of days to generate history for")
+@click.option(
+    "--start-date",
+    type=click.DateTime(formats=["%Y-%m-%d"]),
+    required=True,
+    help="Start date for generating history (format: YYYY-MM-DD)",
+)
+@click.option(
+    "--end-date",
+    type=click.DateTime(formats=["%Y-%m-%d"]),
+    required=True,
+    help="End date for generating history (format: YYYY-MM-DD)",
+)
 @click.option(
     "--profile",
     type=click.Choice(["weekend-warrior", "workday-andy", "grind-dont-stop", "does-not-sleep", "early-bird", "lunch-break-learner", "weekend-procrastinator"]),
     default="workday-andy",
     help="Commit profile to use",
 )
-def main(repo_path: Path, days: int, profile: str):
+def main(repo_path: Path, start_date: datetime, end_date: datetime, profile: str):
     """Generate fake git commit history with customizable profiles."""
     repo = git.Repo(repo_path)
-    end_date = datetime.now(timezone.utc)
-    start_date = end_date - timedelta(days=days)
+    
+    start_date = start_date.replace(tzinfo=timezone.utc)
+    end_date = end_date.replace(tzinfo=timezone.utc)
 
-    click.echo(f"Generating fake git history for {days} days")
+    click.echo(f"Generating fake git history from {start_date.date()} to {end_date.date()}")
     click.echo(f"Repository path: {repo_path}")
     click.echo(f"Using profile: {profile}")
 
