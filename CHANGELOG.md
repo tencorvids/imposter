@@ -1,5 +1,16 @@
 # Changelog
 
+## [0.4.0](https://github.com/tencorvids/imposter/compare/v0.3.1...v0.4.0) (2024-08-28)
+
+
+### Features
+
+* Date input instead of num days ([60efb9a](https://github.com/tencorvids/imposter/commit/60efb9aa58e323e748498c5da618acf404afbd15))
+* Date input instead of num days ([4ad33f2](https://github.com/tencorvids/imposter/commit/4ad33f2c06bfc68e867f4ee054e67432d4170815))
+* Profile adjustments ([2f7042b](https://github.com/tencorvids/imposter/commit/2f7042bd458c8fec432fe640d304f88ce5467ebb))
+* Progress logging ([60efb9a](https://github.com/tencorvids/imposter/commit/60efb9aa58e323e748498c5da618acf404afbd15))
+* Progress logging ([f76d9f3](https://github.com/tencorvids/imposter/commit/f76d9f3620a2f44228ffd1f288a8bdd28bc3186e))
+
 ## [0.3.1](https://github.com/tencorvids/imposter/compare/v0.3.0...v0.3.1) (2024-08-24)
 
 
