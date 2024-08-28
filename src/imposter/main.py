@@ -29,7 +29,7 @@ from imposter.git_operations import create_commit
 )
 @click.option(
     "--profile",
-    type=click.Choice(["weekend-warrior", "workday-andy", "grind-dont-stop", "does-not-sleep", "early-bird", "lunch-break-learner", "weekend-procrastinator"]),
+    type=click.Choice(["weekend-warrior", "workday-andy", "rew", "early-bird", "lunch-break-learner", "night-owl", "sporadic"]),
     default="workday-andy",
     help="Commit profile to use",
 )
