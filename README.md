@@ -26,41 +26,74 @@ Imposter is a tool to generate fake git commit history with customizable profile
 You can run Imposter using Poetry:
 
 ```
-poetry run imposter --repo-path /path/to/your/repo --days 30 --profile workday-andy
+poetry run imposter --repo-path /path/to/your/repo --start-date 2023-01-01 --end-date 2023-12-31 --profile workday-andy
 ```
 
 ### Options:
 
 - `--repo-path`: Path to the git repository (required)
-- `--days`: Number of days to generate history for (default: 30)
+- `--start-date`: Start date for generating history (format: YYYY-MM-DD) (required)
+- `--end-date`: End date for generating history (format: YYYY-MM-DD) (required)
 - `--profile`: Commit profile to use (default: workday-andy)
 
 Available profiles:
 - weekend-warrior
 - workday-andy
-- grind-dont-stop
-- does-not-sleep
 - early-bird
 - lunch-break-learner
-- weekend-procrastinator
+- night-owl
+- sporadic
 
 ## Examples
 
-1. Generate 60 days of commit history for a weekend warrior:
+1. Generate commit history for a weekend warrior from March 1, 2023 to June 30, 2023:
    ```
-   poetry run imposter --repo-path /path/to/your/repo --days 60 --profile weekend-warrior
-   ```
-
-2. Create a month of workday commits:
-   ```
-   poetry run imposter --repo-path /path/to/your/repo --days 30 --profile workday-andy
+   poetry run imposter --repo-path /path/to/your/repo --start-date 2023-03-01 --end-date 2023-06-30 --profile weekend-warrior
    ```
 
-3. Simulate a developer who doesn't sleep for a week:
+2. Create a year of workday commits for 2023:
    ```
-   poetry run imposter --repo-path /path/to/your/repo --days 7 --profile does-not-sleep
+   poetry run imposter --repo-path /path/to/your/repo --start-date 2023-01-01 --end-date 2023-12-31 --profile workday-andy
    ```
+
+## Using the Justfile
+
+If you have `just` installed, you can use the provided Justfile for common tasks:
+
+1. Install dependencies:
+   ```
+   just install
+   ```
+
+2. Run Imposter with default settings (workday-andy profile for the last 30 days):
+   ```
+   just run /path/to/your/repo
+   ```
+
+3. Run Imposter with custom settings:
+   ```
+   just run /path/to/your/repo 2023-01-01 2023-12-31 night-owl
+   ```
+
+4. Clean up project files:
+   ```
+   just clean
+   ```
+
+5. Build the project:
+   ```
+   just build
+   ```
+
+6. Update dependencies:
+   ```
+   just update
+   ```
+
+## Customizing Profiles
+
+You can customize existing profiles or create new ones by modifying the `profiles.py` file. Each profile defines parameters such as minimum and maximum daily commits, work days, work hours, and the probability of committing on a given day.
 
 ## Disclaimer
 
-This tool was made for fun, and is for educational and testing purposes only. Do not use it to misrepresent your actual work or contributions.
+This tool is created for educational and testing purposes only. Do not use it to misrepresent your actual work or contributions.

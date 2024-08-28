@@ -6,8 +6,8 @@ default:
 install:
     poetry install
 
-run REPO_PATH DAYS="30" PROFILE="workday-andy":
-    poetry run imposter --repo-path {{REPO_PATH}} --days {{DAYS}} --profile {{PROFILE}}
+run REPO_PATH START_DATE=`date -d "30 days ago" +%Y-%m-%d` END_DATE=`date +%Y-%m-%d` PROFILE="workday-andy":
+    poetry run imposter --repo-path {{REPO_PATH}} --start-date {{START_DATE}} --end-date {{END_DATE}} --profile {{PROFILE}}
 
 clean:
     find . -type d -name "__pycache__" -exec rm -rf {} +
