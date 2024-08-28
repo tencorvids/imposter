@@ -9,9 +9,10 @@ class Profile:
     max_daily_commits: int
     work_days: list[int]
     work_hours: tuple[int, int]
+    commit_probability: float  # New field to represent the probability of committing on a given day
 
     def should_commit_on_day(self, date: datetime) -> bool:
-        return date.weekday() in self.work_days
+        return date.weekday() in self.work_days and random.random() < self.commit_probability
 
     def get_commit_time(self, date: datetime) -> datetime:
         hour = random.randint(self.work_hours[0], self.work_hours[1])
@@ -21,25 +22,25 @@ class Profile:
 
 PROFILES = {
     "weekend-warrior": Profile(
-        "weekend-warrior", 0, 10, [5, 6], (10, 22)
+        "weekend-warrior", 0, 5, [5, 6], (10, 22), 0.7
     ),
     "workday-andy": Profile(
-        "workday-andy", 1, 5, [0, 1, 2, 3, 4], (9, 17)
+        "workday-andy", 1, 5, [0, 1, 2, 3, 4], (9, 17), 0.8
     ),
-    "grind-dont-stop": Profile(
-        "grind-dont-stop", 3, 15, [0, 1, 2, 3, 4, 5, 6], (0, 23)
-    ),
-    "does-not-sleep": Profile(
-        "does-not-sleep", 1, 8, [0, 1, 2, 3, 4, 5, 6], (20, 4)
+    "rew": Profile(
+        "rew", 1, 8, [0, 1, 2, 3, 4, 5, 6], (9, 23), 0.9
     ),
     "early-bird": Profile(
-        "early-bird", 1, 8, [0, 1, 2, 3, 4, 5, 6], (5, 13)
+        "early-bird", 1, 5, [0, 1, 2, 3, 4, 5], (5, 13), 0.7
     ),
     "lunch-break-learner": Profile(
-        "lunch-break-learner", 1, 3, [0, 1, 2, 3, 4], (12, 14)
+        "lunch-break-learner", 1, 3, [0, 1, 2, 3, 4], (12, 14), 0.6
     ),
-    "weekend-procrastinator": Profile(
-        "weekend-procrastinator", 5, 20, [6], (14, 23)
+    "night-owl": Profile(
+        "night-owl", 1, 6, [0, 1, 2, 3, 4, 5, 6], (20, 2), 0.8
+    ),
+    "sporadic": Profile(
+        "sporadic", 0, 10, [0, 1, 2, 3, 4, 5, 6], (0, 23), 0.5
     ),
 }
 
